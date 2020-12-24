@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,7 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // $this->app->bind('path.public', function() {
+        //     return base_path('../');
+        //  });
     }
 
     public function boot()
@@ -37,13 +39,18 @@ class AppServiceProvider extends ServiceProvider
         } else {
             \App::setLocale('en');
         }
-        //get general setting value        
+        //get general setting value
+
         $general_setting = DB::table('general_settings')->latest()->first();
         View::share('general_setting', $general_setting);
-        config(['staff_access' => $general_setting->staff_access, 'date_format' => $general_setting->date_format, 'currency' => $general_setting->currency, 'currency_position' => $general_setting->currency_position]);
-        
+
+        if(!empty($general_setting)){
+            config(['staff_access' => $general_setting->staff_access, 'date_format' => $general_setting->date_format, 'currency' => $general_setting->currency, 'currency_position' => $general_setting->currency_position]);
+        }
+
         $alert_product = DB::table('products')->where('is_active', true)->whereColumn('alert_quantity', '>', 'qty')->count();
         View::share('alert_product', $alert_product);
+
         Schema::defaultStringLength(191);
     }
 }
