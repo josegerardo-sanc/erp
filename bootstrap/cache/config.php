@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'salepro',
+    'name' => 'Tutorias ITSS',
     'env' => 'local',
-    'debug' => false,
+    'debug' => true,
     'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'America/Mexico_City',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:UrI+wnxgu1hCwfQcYjVYQC69xAtk/MrvqxeIRiO3Zxc=',
+    'key' => 'base64:vKKs/xE+VUgpnAO51L50JTkMfPlmQ1qDwZzmMbnx81c=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -215,7 +215,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'salepro_cache',
+    'prefix' => 'tutorias_itss_cache',
   ),
   'database' => 
   array (
@@ -286,7 +286,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'salepro_database_',
+        'prefix' => 'tutorias_itss_database_',
       ),
       'default' => 
       array (
@@ -430,16 +430,16 @@
   'mail' => 
   array (
     'driver' => 'smtp',
-    'host' => 'smtp.mailtrap.io',
-    'port' => '2525',
+    'host' => 'smtp.sendgrid.net',
+    'port' => '587',
     'from' => 
     array (
-      'address' => NULL,
-      'name' => 'salepro',
+      'address' => 'InstitutoDeLaRegionSierra@gmail.com',
+      'name' => 'tecnologico',
     ),
-    'encryption' => NULL,
-    'username' => NULL,
-    'password' => NULL,
+    'encryption' => 'tls',
+    'username' => 'apikey',
+    'password' => 'SG.2x6xgdx7QFS6dazifE0xyw.gpaKSfGCSzu71apoHSAQwrUjpRGq5c4KGGxlzWkgFCw',
     'sendmail' => '/usr/sbin/sendmail -bs',
     'markdown' => 
     array (
@@ -534,7 +534,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'salepro_session',
+    'cookie' => 'tutorias_itss_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => false,

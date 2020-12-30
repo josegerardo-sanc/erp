@@ -13,13 +13,15 @@
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth'], function() {
-	Route::get('/dashboard', 'HomeController@dashboard');
-});
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::get('/dashboard', 'HomeController@dashboard');
+// });
 
 Route::group(['middleware' => ['auth', 'active']], function() {
 
-	Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
+
 	Route::get('/dashboard-filter/{start_date}/{end_date}', 'HomeController@dashboardFilter');
 
 	Route::get('language_switch/{locale}', 'LanguageController@switchLanguage');
@@ -68,7 +70,7 @@ Route::group(['middleware' => ['auth', 'active']], function() {
 	Route::post('importproduct', 'ProductController@importProduct')->name('product.import');
 	Route::post('exportproduct', 'ProductController@exportProduct')->name('product.export');
 	Route::get('products/print_barcode','ProductController@printBarcode')->name('product.printBarcode');
-	
+
 	Route::get('products/lims_product_search', 'ProductController@limsProductSearch')->name('product.search');
 	Route::post('products/deletebyselection', 'ProductController@deleteBySelection');
 	Route::post('products/update', 'ProductController@updateProduct');

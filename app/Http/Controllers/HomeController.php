@@ -35,6 +35,7 @@ class HomeController extends Controller
         $yearly_sale_amount = [];
 
         $general_setting = DB::table('general_settings')->latest()->first();
+        
         if(Auth::user()->role_id > 2 && $general_setting->staff_access == 'own') {
             $revenue = Sale::whereDate('created_at', '>=' , $start_date)->where('user_id', Auth::id())->whereDate('created_at', '<=' , $end_date)->sum('grand_total');
             $return = Returns::whereDate('created_at', '>=' , $start_date)->where('user_id', Auth::id())->whereDate('created_at', '<=' , $end_date)->sum('grand_total');
@@ -94,7 +95,7 @@ class HomeController extends Controller
                 $payroll_amount = Payroll::whereDate('created_at', '>=' , $start_date)->whereDate('created_at', '<=' , $end_date)->sum('amount');
             }
             $sent_amount = $sent_amount + $return_amount + $expense_amount + $payroll_amount;
-            
+
             $payment_recieved[] = number_format((float)($recieved_amount + $purchase_return_amount), 2, '.', '');
             $payment_sent[] = number_format((float)$sent_amount, 2, '.', '');
             $month[] = date("F", strtotime($start_date));
@@ -152,7 +153,7 @@ class HomeController extends Controller
             $data[2] = $profit;
             $data[3] = $purchase_return;
         }
-        
+
         return $data;
     }
 

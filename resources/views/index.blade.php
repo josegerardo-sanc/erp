@@ -2,8 +2,6 @@
 @section('content')
 
 
-<h1>entramos al index</h1>
-
 <!-- this portion is for demo only -->
 <!-- <style type="text/css">
 
